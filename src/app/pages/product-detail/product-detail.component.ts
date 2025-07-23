@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LatestProductComponent } from '../../shared/items/latest-product/latest-product.component';
 import {
+  Product,
   ProductDto,
   ProductResponse,
 } from '../../shared/models/productDto.modal';
@@ -10,6 +11,7 @@ import { RelatedProductComponent } from "../../shared/items/related-product/rela
 import { BrandCarouselComponent } from "../../shared/items/brand-carousel/brand-carousel.component";
 import { FooterProductsComponent } from "../../shared/components/footer-products/footer-products.component";
 import { ProductItemComponent } from '../../shared/items/product-item/product-item.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,12 +21,13 @@ import { ProductItemComponent } from '../../shared/items/product-item/product-it
 })
 export class ProductDetailComponent {
 
-  data: ProductResponse | null = null;
+  data: Product | null = null;
 
   product: ProductDto[] | undefined;
 
+ 
   // Injecting the ProductServiceService to fetch product details
-  constructor(private pservice: ProductServiceService) {}
+  constructor( private pservice: ProductServiceService, private route: ActivatedRoute) {}
 
   // Observable value for testing BehaviorSubject
   // This will be used to demonstrate the BehaviorSubject functionality
@@ -35,33 +38,13 @@ export class ProductDetailComponent {
   // This is where we will fetch the product details and subscribe to the BehaviorSubject
   ngOnInit() {
     // Fetch product details here
+        const productId = this.route.snapshot.paramMap.get('id');
+
     this.pservice.getAllProduct().subscribe((data: ProductResponse) => {
-      this.data = data;
+      this.data = data.products.filter((product:any) => product.id === Number(productId))[0];
+      
       console.log(this.data);
-      this.product = this.data.products.map((x) => {
-        return {
-          category: x.category,
-          image: x.images[0],
-          title: x.title,
-          price: x.price,
-          Oprice: x.price,
-          Nprice: x.discountPercentage,
-          discountPercentage: x.discountPercentage,
-          images: x.images,
-          rating: x.rating,
-          tags: x.tags,
-          sku: x.sku,
-          feature: x['feature'],
-          stock: x.stock,
-          availabilityStatus: x.availabilityStatus,
-          meta: x.meta ?? {
-            createdAt: '',
-            updatedAt: '',
-            barcode: '',
-            qrCode: '',
-          },
-        };
-      });
+    
     });
 
     // Subscribe to BehaviorSubject to get the value

@@ -39,6 +39,7 @@ export class ProductListingComponent implements OnInit {
       console.log(this.data);
       this.product = this.data.products.map((x) => {
         return {
+          id: x.id,
           category: x.category,
           image: x.images[0],
           title: x.title,

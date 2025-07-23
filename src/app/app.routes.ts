@@ -23,7 +23,7 @@ export const routes: Routes = [
           )
       },
       {
-        path:'product-detail',
+        path:'product-detail/:id',
         loadComponent:()=>
           import('./pages/product-detail/product-detail.component').then(
             (m)=>m.ProductDetailComponent

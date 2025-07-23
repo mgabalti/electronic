@@ -15,6 +15,7 @@ export interface ProductDto {
   stock?: number;
   meta?:Meta;
   availabilityStatus?:string;
+  id?: number;
 }
 
 export interface ProductResponse {

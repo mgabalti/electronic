@@ -1,5 +1,5 @@
 @if (Product) {
-<div class="product-cart">
+<div class="product-cart" routerLink="/product-detail/{{Product.id}}">
   <div class="cart-wrapper">
     <div class="product-title-box">
       <a class="product-category" href="">{{Product.category}}</a>
