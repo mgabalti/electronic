@@ -1,0 +1,35 @@
+<div class="hero container theme-dots background-color">
+  <owl-carousel-o [options]="customOptions">
+
+
+    @for (product of products; track $index) {
+      <ng-template carouselSlide>
+        <div class="hero-wrapper " [ngClass]="product.cls">
+          <div class="hero-text text-dark">
+            <div class="hero-title">
+              @if (product.pretitle) {
+              <h4 class="pre-title">{{ product.pretitle }}</h4>
+              }
+              <p class="title" [innerHTML]="product.title"></p>
+              @if (product.postTitle) {
+              <h4 class="post-title">{{ product.postTitle }}</h4>
+              }
+            </div>
+            @if (product.price) {
+            <div class="hero-price">
+              <h6>From</h6>
+              <p [innerHTML]="product.price"></p>
+            </div>
+            }
+            <div class="hero-button">
+              <button class="btn btn-primary">Start Buying</button>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img [src]="product.image" [alt]="product.title" />
+          </div>
+        </div>
+      </ng-template>
+    }
+  </owl-carousel-o>
+</div>

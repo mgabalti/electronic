@@ -1,0 +1,16 @@
+<div class="sale-carts text-dark container">
+  @for (Product of Products; track $index) {
+  <div class="cart">
+    <div class="img"><img [src]="Product.image" alt="{{Product.image}}"></div>
+    <div class="text">
+      <div class="title">
+        <p [innerHTML]="Product.title"></p>
+      </div>
+      <div class="shop">
+        <span [innerHTML]="Product.buy"></span>
+        <span><i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+  </div>
+  }
+</div>

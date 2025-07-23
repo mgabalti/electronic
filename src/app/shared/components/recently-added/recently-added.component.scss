@@ -1,0 +1,40 @@
+.container {
+  position: relative;
+  .title {
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    padding: 10px 0px;
+    p {
+      font-size: 22px;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left:0;
+      width: 15%;
+      height: 2px;
+      background-color: var(--primary-color);
+      // transform: translateX(-50%);
+    }
+  }
+  .regular-product3 {
+    padding: 11px 0px 35px 4px;
+  }
+}
+
+
+::ng-deep.regular-product3 .owl-theme .owl-nav {
+    position: absolute;
+    top: -65px;
+    right: 0;
+  }
+
+  ::ng-deep.regular-product3 .owl-theme .owl-nav [class*=owl-] {
+    background:transparent ;
+    color: #869791;
+    &:hover{
+      background: transparent;
+      color: var(--dark-color);
+    }
+}

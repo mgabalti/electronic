@@ -1,0 +1,147 @@
+<header>
+  <div class="top-bar">
+    <div class="topbar-menu container">
+      <div class="left-menu">
+        <a href="#">Welcome to Worldwide Electronics Store</a>
+      </div>
+      <div class="right-menu">
+        <a href=""><i class="fa-solid fa-location-dot"></i>Store Locator</a>
+        <a href=""><i class="fa-solid fa-truck-fast"></i>Track Your Order</a>
+        <a href=""><i class="fa-solid fa-bag-shopping"></i>Shop</a>
+        <a href=""><i class="fa-regular fa-user"></i>My Account</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-bar text-dark ">
+    <div class="header-middle container">
+      <div class="header-logo ">
+        <h1><a routerLink="/">electro</a><span style="color: #fed700;">.</span></h1>
+      </div>
+
+      <div class="header-menu-toggle">
+        <label for="menu-toggle" class="menu-icon" (click)="toggleSidebar()"><i class="fas fa-bars"></i></label>
+        <div class="menu" [class.open]='openSidebar'>
+          <ul>
+            @for (item of departmentMenu; track $index) {
+            <li (click)="updateItem(item.submenu || [])" (dblclick)="updateItem([])">
+
+              @if (item.submenu) {
+              {{item.title}} <i class="fa-chevron-down fa "></i>
+              }
+              @else {
+              {{item.title}}
+              }
+            </li>
+            }
+          </ul>
+          @if (currentItem.length) {
+          <ul>
+            <div class="menu-children">
+              @for (item of currentItem; track $index) {
+              <li>
+                <b>{{item.title}}</b>
+              </li>
+              @if (item.children) {
+              @for (item of item.children; track $index) {
+              <li>{{item.title}}</li>
+              }
+              }
+              }
+            </div>
+          </ul>
+          }
+        </div>
+      </div>
+
+      <div class="header-searchbar">
+        <form action="search" class="input-field">
+          <input type="text" placeholder="Search for Products" class="from-control">
+          <select name="search" id="" class="from-control">
+            <option value="Products" disabled selected>All Catagories</option>
+            <option value="Products">Uncatagories</option>
+            <option value="Products">Accessories</option>
+            <option value="Products">Cameras and Photography</option>
+            <option value="Products">Computer and Components</option>
+            <option value="Products">Gadgets</option>
+          </select>
+          <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+      </div>
+      <div class="header-icons">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <i class="fa-solid fa-code-compare"></i>
+        <i class="fa-regular fa-heart"></i>
+        <i class="fa-regular fa-user"></i>
+        <i class="fa-solid fa-bag-shopping"></i>
+      </div>
+    </div>
+    <div class="header-bottom container">
+      <div class="department-menu ">
+        <a href="#" class="bg-primary"><span><i class="fa-solid fa-list-ul"></i>All Departments</span></a>
+        <div class="dept-title" (mouseleave)="updateData([])" >
+          <ul>
+            @for (item of departmentMenu; track $index) {
+            <li (mouseenter)="updateData(item.submenu || [])">
+
+              @if (item.submenu) {
+             <li class="dept-sub-list">{{item.title}} <i class="fa-chevron-right fa"></i></li>
+              }
+              @else {
+              <b class="dept-list">{{item.title}}</b>
+              }
+            </li>
+            }
+          </ul>
+          @if (currentChild.length) {
+          <ul class="dept-children">
+            @for (item of currentChild; track $index) {
+            <div class="menu-children">
+              <li class="dept-child-title">
+                <b>{{item.title}}</b>
+              </li>
+              @if (item.children) {
+              @for (item of item.children; track $index) {
+              <li class="dept-child-list">{{item.title}}</li>
+              }
+              }
+            </div>
+            }
+          </ul>
+          }
+        </div>
+      </div>
+      <div class="secondary-nav">
+        <div class="pages">
+          <span>All Pages</span>
+          <i class="fa-solid fa-chevron-down"></i>
+          <div class="all-pages">
+            @for (item of allPages; track $index) {
+            <div>
+              <h3>{{item.title}}</h3>
+              <ul>
+                @for (link of item.links; track $index) {
+                  @if (link.route) {
+                     <li [routerLink]="link.route">{{link.title}}</li>
+                  }@else {
+
+                    <li>{{link.title}}</li>
+                  }
+
+                }
+              </ul>
+            </div>
+            }
+          </div>
+        </div>
+        <div class="brands">Featured Brands</div>
+        <div class="trending-style">Trending Styles</div>
+        <div class="gift-card">Gift Cards</div>
+
+      </div>
+      <div class="shipping">Free Shipping on Orders $50+</div>
+    </div>
+  </div>
+
+
+</header>

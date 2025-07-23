@@ -1,0 +1,68 @@
+<footer>
+  <div class="signUp-bar bg-primary">
+    <div class="news-letter">
+      <h5><i class="fa-regular fa-paper-plane"></i> Sign up to Newsletter</h5>
+    </div>
+    <div class="newsletter-text">
+      <span>...and receive <strong> $20 coupon for first shopping</strong></span>
+
+    </div>
+    <div class="newsletter-search">
+      <input type="text" placeholder="Enter your email address">
+      <button class="btn bg-dark">SignUp</button>
+    </div>
+  </div>
+
+  <div class="footer-wrapper text-dark">
+    <div class="inner-box">
+      <div class="footer-logo ">
+        <h1>electro<span style="color: #fed700;">.</span></h1>
+      </div>
+      <div class="footer-callUs">
+        <div class="call-icon">
+          <i class="fa-solid fa-headset"></i>
+
+        </div>
+        <div class="call-text">
+          <p class="p1">Got Questions ? Call us 24/7!</p>
+          <p class="p2"><b>(800) 8001-8588 ,</b><b> (0600) 874 548</b></p>
+        </div>
+      </div>
+      <div class="contact-info">
+        <strong>Contact Info</strong>
+        <p>17 Princess Road, London, Greater London NW1 8JR, UK</p>
+      </div>
+      <div class="footer-logos">
+        <a *ngFor="let link of socialLinks" [href]="link.href" [ngClass]="link.class">
+          <i [ngClass]="link.icon" class="icon-color"></i>
+        </a>
+
+      </div>
+    </div>
+   @for (item of footerLinks; track $index) {
+    <div class="inner-box">
+      <div class="find">
+        <h3>{{item.title}}</h3>
+        <ul>
+          @for (link of item.links; track $index) {
+          <li>{{link.title}}</li>
+          }
+        </ul>
+      </div>
+    </div>
+   }
+
+
+  </div>
+
+  <div class="copyright-bar">
+    <div class="copyright">
+      © <strong>Electro</strong> - All Rights Reserved
+    </div>
+    <div class="copy-img">
+      <img src="https://electro.madrasthemes.com/wp-content/uploads/2021/03/patment-icon1.png" alt="">
+    </div>
+  </div>
+
+
+</footer>

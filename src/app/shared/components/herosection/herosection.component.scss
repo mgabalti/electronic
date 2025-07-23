@@ -1,4 +1,7 @@
 .hero {
+  background-image: url(https://electro.madrasthemes.com/wp-content/uploads/2019/01/background.jpg);
+  background-size: cover;
+  background-position: center;
   position: relative;
   width: 100%;
   z-index: 0;
@@ -17,7 +20,7 @@
     .hero-text {
       display: flex;
       flex-direction: column;
-      width: 45%;
+      width: 47%;
       @media (max-width: 992px) {
         width: 100%;
         align-items: center;
@@ -27,6 +30,7 @@
         .title {
           font-size: 45px;
           font-weight: 300;
+          line-height: 1.1;
           @media (max-width: 768px) {
             font-size: 35px;
           }
@@ -40,7 +44,7 @@
         }
         .pre-title {
           font-size: 18px;
-          color: var(--hero-pre-title-color);
+          color: var(--hero-title-color);
           font-weight: 600;
         }
       }
@@ -60,6 +64,10 @@
           border-radius: 10px;
           width: 212px;
           font-weight: 200;
+          margin-top: 60px;
+          &:hover {
+            background-color: var(--primary-color-hover);
+          }
         }
       }
     }
@@ -81,41 +89,89 @@
     font-weight: 600;
   }
 
-
   // Hero Section Animation
 
   .active {
+    .owl-carousel .animated {
+      animation-duration: unset !important;
+      animation-fill-mode: unset !important;
+    }
     .animation1 {
       .hero-image {
-        animation: slideright 0.8s ease-in-out;
+        animation: slideright 0.7s ease-in-out;
       }
       .title {
-        animation: topFadeIn 0.5s ease-out forwards;
-        animation-delay: 0.6s;
+        animation: topFadeIn 0.4s ease-out forwards;
+        animation-delay: 1s;
         opacity: 0;
       }
-      .post-title  {
-        animation: bottomFadeIn 0.5s ease-out forwards;
-        animation-delay: 0.8s;
+      .post-title {
+        animation: bottomFadeIn 0.7s ease-out forwards;
+        animation-delay: 1.4s;
         opacity: 0;
       }
 
       .hero-price {
-        animation: bottomFadeIn 0.5s ease-out forwards;
-        animation-delay: 1.2s;
+        animation: bottomFadeIn 0.7s ease-out forwards;
+        animation-delay: 1.7s;
         opacity: 0;
       }
       .hero-button {
-        animation: bottomFadeIn 0.5s ease-out forwards;
-        animation-delay: 1.3s;
+        animation: bottomFadeIn 0.7s ease-out forwards;
+        animation-delay: 2.1s;
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(0px);
+      }
+      // .pre-title {
+      //    animation: bottomFadeIn 0.5s ease-out forwards;
+      //   animation-delay: 0.8s;
+      //   opacity: 0;
+      //   transform: translateX(60px);
+      // }
+    }
+
+    .animation2 {
+      .hero-image {
+        animation: slideleft 0.7s ease-in-out;
       }
       .pre-title {
-         animation: bottomFadeIn 0.5s ease-out forwards;
-        animation-delay: 0.8s;
+        animation: bottomFadeIn 0.2s linear forwards;
+        animation-delay: 0.4s;
         opacity: 0;
         transform: translateX(60px);
+      }
+      .title {
+        animation: bottomFadeIn 0.4s linear forwards;
+        animation-delay: 0.7s;
+        transform: translateY(100px);
+        opacity: 0;
+      }
+      .hero-button {
+        animation: fadeIn 0.5s forwards;
+        animation-delay: 1.5s;
+        opacity: 0;
+      }
+    }
+
+    .animation3 {
+      .hero-image {
+        animation: slideright 0.7s ease-in-out;
+        // animation-duration: 0.2s;
+      }
+      .pre-title {
+        animation: rightFadeIn 0.4s linear forwards;
+        animation-delay: 0.4s;
+        opacity: 0;
+      }
+      .title {
+        animation: fadeIn 0.5s forwards;
+        animation-delay: 1.3s;
+        opacity: 0;
+      }
+      .hero-button {
+        animation: fadeIn 0.5s forwards;
+        animation-delay: 1.5s;
+        opacity: 0;
       }
     }
   }
@@ -129,6 +185,16 @@
     transform: translateX(0);
   }
 }
+@keyframes slideleft {
+  0% {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 @keyframes topFadeIn {
   to {
     opacity: 1;
@@ -140,5 +206,22 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@keyframes rightFadeIn {
+  0% {
+    transform: translateX(80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    // transform: translateX(0);
   }
 }

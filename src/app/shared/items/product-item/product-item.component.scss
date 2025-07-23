@@ -1,0 +1,103 @@
+.product-cart {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50px;
+    right: -1px;
+    height: 74%;
+    border-right: 1px solid var(--border-color);
+  }
+  &:hover{
+    &::after {
+      display: none;
+    }
+  }
+
+  .cart-wrapper {
+    padding: 20px 15px 14px 15px;
+    height: 100%;
+    &:hover {
+      position: absolute;
+      z-index: 1;
+    }
+
+    .product-title-box {
+      text-overflow: clip;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; // Truncate after 2 lines
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-height: 1.3;
+      .product-title {
+        font-size: 14px;
+      }
+    }
+    .product-img {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        object-fit: cover;
+      }
+    }
+    .product-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 23px;
+      // margin-bottom: 4px;
+      .discount-price {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .icon {
+        @media (max-width: 1200px) {
+          display: none;
+        }
+      }
+    }
+
+    .product-footer {
+      display: none;
+      border-top: 1px solid var(--border-color);
+      justify-content: space-around;
+      padding-top: 5px;
+      @media (max-width: 1200px) {
+        display: none;
+      }
+      i {
+        margin: 0 8px;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0px 0px 5px -2px black;
+      height: auto;
+      background-color: white;
+      .product-price {
+        i {
+          opacity: 1;
+          background-color: var(--primary-color);
+        }
+      }
+
+      .product-footer {
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        span {
+          cursor: pointer;
+          &:hover {
+            color: var(--dark-color);
+          }
+        }
+      }
+    }
+  }
+}

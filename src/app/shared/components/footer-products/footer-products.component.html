@@ -1,0 +1,62 @@
+<div class="footer-products  text-dark">
+  <div class="products container ">
+    @for (product of products; track $index) {
+    <div class="title">
+      <h4>{{product.title}}</h4>
+      @for (item of product.item; track $index) {
+      <div class="product-body">
+        <img [src]="item.img" alt="{{item.img}}">
+        <div class="product-disc">
+
+          <div class="category product-title">{{item.category}}</div>
+          <div class="rating">{{item.rating}}
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <div class="price">
+            @if (item.nPrice==item.oPrice) {
+            <span class="fix-price">{{item.oPrice}}</span>
+            }@else {
+            <span class="new-price">{{item.nPrice}}</span>
+            <span class="old-price"><del>{{item.oPrice}}</del></span>
+            }
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    }
+
+    <div class="right-img">
+      <img src="https://electro.madrasthemes.com/wp-content/uploads/2019/04/footer-widget-img-01.jpg" alt="">
+    </div>
+  </div>
+
+  <!-- Accordion for footer products -->
+
+  <div class="accordion  background-color">
+    <div class="accordion-wrapper">
+      @for (item of menu; track $index) {
+    <div class="accordion-inner" (click)="toggle($index)">
+      <div class="accordion-header">
+        <li>{{ item.title }}</li>
+      <i class="arrow fa-solid fa-chevron-down"  [class.open]="activeIndex === $index"></i>
+      </div>
+      <div class="accordion-body " [class.active]="activeIndex === $index">
+        <ul>
+            @for (items of item.links; track $index) {
+            <div class="links">
+              <li><a>{{ items }}</a></li>
+            </div>
+          }
+        </ul>
+      </div>
+    </div>
+    }
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,283 @@
+.signUp-bar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--dark-color);
+  padding: 13px;
+}
+
+.news-letter h5 {
+  font-size: 20px;
+  font-weight: 300;
+  font-weight: 400;
+}
+
+.newsletter-text span {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.newsletter-search {
+  display: flex;
+}
+
+.newsletter-search input {
+  padding: 9px 1rem;
+  min-width: 330px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border: none;
+  font-size: 14px;
+}
+
+.search-input:focus,
+:focus {
+  outline: none;
+}
+
+.newsletter-search button {
+  color: var(--text-color);
+  padding: 8px 1.7rem;
+  border: none;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+// Foot Wraper Section
+
+.footer-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: var(--background-color);
+  padding: 4.28em 8em 4.44em 2em;
+}
+
+.footer-logo {
+  font-size: 24px;
+}
+
+.footer-callUs {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 25px;
+}
+
+.footer-callUs .call-icon {
+  font-size: 60px;
+  color: var(--primary-color);
+}
+
+.contact-info {
+  font-size: 14px;
+  color: var(--dark-color);
+  font-weight: 400;
+  margin-bottom: 17px;
+}
+
+.footer-logos {
+  display: flex;
+  gap: 1.8rem;
+  @media (max-width: 768px) {
+    position: absolute;
+    top: -4.5rem;
+    .facebook {
+      i {
+        color: #1877f2;
+      }
+    }
+
+    .whatsapp {
+      i {
+        color: #128c7e;
+      }
+    }
+
+    .pinterest {
+      i {
+        color: #e60023;
+      }
+    }
+
+    .linkedin {
+      i {
+        color: #0077b5;
+      }
+    }
+
+    .instagram {
+      i {
+        color: #fd5949;
+      }
+    }
+
+    .youtube {
+      i {
+        color: #ff0000;
+      }
+    }
+
+    .rss {
+      i {
+        color: #fd5949;
+      }
+    }
+  }
+  i {
+    font-size: 26px;
+    transition: all ease 0.4s;
+  }
+
+  .facebook {
+    &:hover {
+      i {
+        color: #1877f2;
+      }
+    }
+  }
+
+  .whatsapp {
+    &:hover {
+      i {
+        color: #128c7e;
+      }
+    }
+  }
+
+  .pinterest {
+    &:hover {
+      i {
+        color: #e60023;
+      }
+    }
+  }
+
+  .linkedin {
+    &:hover {
+      i {
+        color: #0077b5;
+      }
+    }
+  }
+
+  .instagram {
+    &:hover {
+      i {
+        color: #fd5949;
+      }
+    }
+  }
+
+  .youtube {
+    &:hover {
+      i {
+        color: #ff0000;
+      }
+    }
+  }
+
+  .rss {
+    &:hover {
+      i {
+        color: #fd5949;
+      }
+    }
+  }
+}
+
+.find {
+  ul {
+    cursor: pointer;
+    line-height: 30px;
+    font-size: 14px;
+  }
+  h3 {
+    height: 45px;
+    font-size: 16px;
+  }
+}
+.copyright-bar {
+  color: var(--dark-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: #eaeaea;
+  .copyright {
+    margin-left: 75px;
+    font-size: 0.9rem;
+  }
+  .copy-img {
+    margin-right: 75px;
+  }
+}
+
+@media (max-width: 992px) {
+  .signUp-bar {
+    display: none;
+  }
+  .footer-wrapper {
+    position: relative;
+    background-color: var(--dark-color);
+    justify-content: center;
+    padding: 3rem 1rem 0rem 1rem;
+    .inner-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-color);
+      // .footer-logos {
+      //   position: absolute;
+      //   margin-top: 15px;
+      //   top: 0;
+      //   .rss {
+      //     i {
+      //       color: #fd5949;
+      //     }
+      //   }
+      //   .yt {
+      //     i {
+      //       color: #ff0000;
+      //     }
+      //   }
+      //   .insta {
+      //     i {
+      //       color: #fd5949;
+      //     }
+      //   }
+      //   .lin {
+      //     i {
+      //       color: #0077b5;
+      //     }
+      //   }
+      //   .ptr {
+      //     i {
+      //       color: #e60023;
+      //     }
+      //   }
+      //   .wa {
+      //     i {
+      //       color: #128c7e;
+      //     }
+      //   }
+      //   .fb {
+      //     i {
+      //       color: #1877f2;
+      //     }
+      //   }
+      // }
+      .contact-info {
+        display: none;
+      }
+      .call-icon {
+        display: none;
+      }
+      .find {
+        display: none;
+      }
+    }
+  }
+  .copyright-bar {
+    display: none;
+  }
+}

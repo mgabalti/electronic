@@ -1,0 +1,22 @@
+@if (product) {
+@if (product.rating && product.price ) {
+@if (product.rating>=3 && product.price>=150) {
+<div class="latest-product-wrapper text-dark">
+  <div class="product-img">
+    <img [src]="product.image" alt="{{ product.image }}">
+  </div>
+  <div class="latest-product-text">
+    <div class="product-title">
+      <p><span>{{ product.title }}</span></p>
+    </div>
+    <div class="product-rating">
+      <app-rating [rating]="product.rating"></app-rating>
+    </div>
+    <div class="product-price">
+      <span>${{ product.price | number:'1.2-2' }}</span>
+    </div>
+  </div>
+</div>
+}
+}
+}

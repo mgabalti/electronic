@@ -1,0 +1,18 @@
+<div class="deal-container ">
+  <div class="container text-dark">
+    <div class="deal-header">
+      <ul class="custom-tab-1">
+        @for (product of products; track $index) {
+        <li (click)="isActive(product.title)" class="tab-item" [ngClass]="{'current':isActiveTab == product.title}">{{product.title}}</li>
+        }
+      </ul>
+    </div>
+    <div class="deal-products">
+      @for (deal of deals; track $index) {
+      <div class="deal-inner">
+        <app-product-item [Product]="deal"></app-product-item>
+      </div>
+      }
+    </div>
+  </div>
+</div>

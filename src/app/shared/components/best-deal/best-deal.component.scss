@@ -1,0 +1,50 @@
+.deal-container {
+  background-color: var(--background-color);
+  margin-bottom: 20px;
+  padding: 15px 0px;
+  .container {
+    .deal-header {
+      ul {
+        white-space: nowrap;
+        font-size: 14px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-width: 100%;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+        justify-content: space-around;
+      }
+    }
+    .deal-products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(9%, 1fr));
+      gap: 1px;
+      padding: 15px 0px;
+      @media (max-width: 1200px) {
+        grid-template-columns: repeat(auto-fill, minmax(10%, 1fr));
+      }
+      @media (max-width: 992px) {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+      .deal-inner {
+        background-color: #fff;
+        grid-column: span 3;
+        @media (max-width: 1200px) {
+          grid-column: span 2;
+        }
+        @media (max-width: 992px) {
+          grid-column: span 1;
+        }
+        &:nth-child(2) {
+          grid-row: span 2;
+          grid-column: span 5;
+          @media (max-width: 992px) {
+            grid-column: span 1;
+            grid-row: span 1;
+          }
+        }
+      }
+    }
+  }
+}

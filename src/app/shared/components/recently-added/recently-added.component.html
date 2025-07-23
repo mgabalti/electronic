@@ -1,0 +1,20 @@
+
+<div class="container">
+  <div class="title">
+    <p class="text-dark">Recently Added</p>
+  </div>
+
+  <div class="regular-product3 theme-dots">
+    <owl-carousel-o [options]="customOptions">
+
+    @for (product of products; track $index) {
+    <ng-template carouselSlide ="id">
+
+      <app-product-item [Product]="product"></app-product-item>
+    </ng-template>
+    }
+
+  </owl-carousel-o>
+  </div>
+</div>
+

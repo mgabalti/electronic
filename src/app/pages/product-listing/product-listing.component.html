@@ -1,0 +1,331 @@
+<div class="container">
+  <div class="product-listing">
+    <!-- Side Bar -->
+    <div class="sidebar text-dark" [class.active]="openSidebar" (mouseleave)="closeSidebar()"
+      (mouseenter)="insideSidebar=true">
+      <div class="product-cat">
+        <ul class="show-all-outer">
+          <li (click)="toggleShowAll()">
+            <span>Show All Categories</span>
+            @if (showAllCategory) {
+            <i class="fa-solid fa-angle-up"></i>
+            }
+            @if (!showAllCategory) {
+            <i class="fa-solid fa-angle-right"></i>
+            }
+            @if (showAllCategory) {
+            <ul class="show-all-inner">
+              <li><span>Accessories</span></li>
+              <li><span>Bluetooth Speakers</span></li>
+              <li><span>Cameras & Photography</span></li>
+              <li><span>Computer Components</span></li>
+              <li><span>Gadgets</span></li>
+              <li><span>Headphones</span></li>
+              <li><span>Home Entertainment</span></li>
+              <li><span>Home Theatre</span></li>
+              <li><span>Laptops & Computers</span></li>
+              <li><span>Speakers</span></li>
+            </ul>
+            }
+          </li>
+
+          <li><b><span>Smart Phones & Tablets</span></b></li>
+          <li><span>Smartphones</span></li>
+          <li><span>Tablets</span></li>
+        </ul>
+      </div>
+
+      <div class="filter">
+        <h3>Filter</h3>
+        <div class="search">
+          <h4>Category</h4>
+          <ul>
+            @for (item of categoryList; track $index) {
+            <li>
+              <span><input type="checkbox" class="fa-solid" [id]="'category_id'+$index" [value]="item"
+                  (change)="onCategoryChange($event)">
+                <label [for]="'category_id'+$index">{{ item }} <span class="cat-counts">({{ categoryCounts[item] || 0 }})</span></label></span>
+            </li>
+            }
+            @if (showMore) {
+            <li><span><input type="checkbox" class=" fa-solid">Electronics</span></li>
+            <li><span><input type="checkbox" class=" fa-solid">Books</span></li>
+            }
+            <div class="more">
+              @if (!showMore) {
+              <li class="more" (click)="showMore=true"><span>+ Show more</span></li>
+              }
+              @if (showMore) {
+              <li class="less" (click)="showMore=false"><span>- Show less</span></li>
+              }
+            </div>
+          </ul>
+        </div>
+
+        <div class="search">
+          <h4>Color</h4>
+          <ul>
+            <label for="">
+              <li><span><input type="checkbox" class="fa-solid">Black Leather</span></li>
+              <li><span><input type="checkbox" class="fa-solid">Black</span></li>
+              <li><span><input type="checkbox" class="fa-solid">Gold</span></li>
+              <li><span><input type="checkbox" class="fa-solid">Spacegrey</span></li>
+              <li><span><input type="checkbox" class="fa-solid">Turquoise</span></li>
+              @if (showMore) {
+              <li><span><input type="checkbox" class="fa-solid">White</span></li>
+              <li><span><input type="checkbox" class="fa-solid">White with Gold</span></li>
+              }
+              <div class="more">
+                @if (!showMore) {
+                <li class="more" (click)="showMore=true"><span>+ Show more</span></li>
+                }
+                @if (showMore) {
+                <li class="less" (click)="showMore=false"><span>- Show less</span></li>
+                }
+              </div>
+            </label>
+          </ul>
+        </div>
+      </div>
+
+      <div class="price-range">
+        <div class="title">
+          <h3>Price</h3>
+        </div>
+        <div class="price-range-wrapper">
+          <div class="dual-slider">
+            <input type="range" [min]="priceRange.min" [max]="priceRange.max" step="1" [(ngModel)]="minPrice"
+              (input)="onMinChange()">
+
+            <input type="range" [min]="priceRange.min" [max]="priceRange.max" step="1" [(ngModel)]="maxPrice"
+              (input)="onMaxChange()">
+          </div>
+          <div class="price-lable">
+            <label for="priceRange">
+              Price: ${{minPrice |number:'1.2-2'}}-${{maxPrice |number:'1.2-2'}}
+            </label>
+          </div>
+
+          <div class="filter-btn">
+            <button (click)="applyPriceFilter()">Filter</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark And Light Mood Button -->
+      <!-- <div class="theme-toggle">
+        <button (click)="toggleTheme()">
+          Switch to {{ isDarkMode ? 'Light' : 'Dark' }} Mode
+        </button>
+      </div> -->
+
+
+      <div class="ad-img">
+        <img src="https://electro.madrasthemes.com/wp-content/uploads/2016/02/shop-sidebar-ad-banner.jpg"
+          alt="ad-image">
+      </div>
+
+      <div class="latest-product">
+        <div class="latest-product-title">
+          <h3>Latest Products</h3>
+        </div>
+        @for (item of product; track $index) {
+        <app-latest-product [product]="item"></app-latest-product>
+        }
+      </div>
+
+    </div>
+
+    <!-- Product Listing -->
+    <div class="listing-wrapper text-dark">
+      <!-- Listing Title -->
+      <div class="list-title">
+        <h1>Smart Phones & Tablets</h1>
+        <p>
+          @if (product?.length === limitedData?.length) {
+        <p>Showing All {{product?.length}} Products</p>
+        } @else {
+        <p>Showing {{limitedData?.length}} from {{product?.length}} Products</p>
+        }
+        </p>
+      </div>
+      <!-- Control Bar -->
+      <div class="control-bar">
+        <div class="display">
+          <div class="grid" (click)="setView('grid')" [class.active]="currentView=='grid'"><i
+              class="fa-solid fa-table-cells"></i></div>
+          <div class="extended-grid" (click)="setView('extend-grid')" [class.active]="currentView=='extend-grid'"><i
+              class="fa-solid fa-align-justify"></i></div>
+          <div class="list" (click)="setView('list')" [class.active]="currentView=='list'"><i
+              class="fa-solid fa-list"></i></div>
+          <div class="list-small"><i class="fa-solid fa-table-list"></i></div>
+          <div class="slider-filter" (mouseenter)="insideSidebar=false" (click)="toggleSidebar()"><i
+              class="fa-solid fa-sliders"></i><span>Filters</span></div>
+        </div>
+
+        <div class="sorting">
+          <form action="">
+            <select #sortBy (change)="sortProduct(sortBy.value)">
+              <option value="menu_order" selected>Default Sorting</option>
+              <option value="popularity">Sort by popularty</option>
+              <option value="rating">Sort by average rating</option>
+              <option value="latest">Sort by latest</option>
+              <option value="availability">Sort by availability</option>
+              <option value="priceLowToHigh">Sort by price: low to high</option>
+              <option value="priceHighToLow">Sort by price: high to low</option>
+            </select>
+          </form>
+        </div>
+
+        <div class="product-show">
+          <form action="">
+            <select name="" id="" (change)="onChangeLimit($event)">
+              <option value="30" selected> Show All</option>
+              <option value="20"> Show 20</option>
+            </select>
+          </form>
+        </div>
+
+        @if (product?.length!==limitedData?.length) {
+        <div class="next-page">
+          <form action="">
+            <input type="number" id="goto-page" class="form-control" [defaultValue]="1" size="2" [min]="1" [max]="2"
+              step="1" required>
+          </form>
+          of 2
+          <a class="page-no">→</a>
+        </div>
+        }
+
+
+
+      </div>
+
+      <div class="productsList">
+
+        <!-- Grid Viwe -->
+        <div class="grid-view">
+          @if (currentView=='grid') {
+          @for (item of limitedData ; track $index) {
+
+          <app-product-item [Product]="item"></app-product-item>
+          }
+          }
+        </div>
+
+
+
+        <!-- Grid Extended View -->
+        <div *ngIf="currentView === 'extend-grid'" class="extended-grid-view">
+          <div class="products" *ngIf="limitedData">
+            <div class="product-cart text-dark" *ngFor="let product of limitedData">
+              <div class="cart-wrapper">
+                <div class="product-img">
+                  @if (product.images) {
+                  <img [src]="product.images[0]" alt="{{ product.images }}">
+                  }
+                </div>
+
+                <div class="product-text">
+                  <div class="product-title-box">
+                    <a class="product-category" href="">{{ product.category }}</a>
+                    <h3 class="product-title">{{ product.title }}</h3>
+                  </div>
+
+                  <div class="availability sku">
+                    @if (product.availabilityStatus==='In Stock') {
+                    <p><strong>Availability : </strong> <span>{{product.availabilityStatus}}</span></p>
+                    }
+                    @else {
+                    <p><strong>Availability : </strong> <span style="color: red;">{{product.availabilityStatus}}</span>
+                    </p>
+                    }
+                  </div>
+
+                  @if (product.rating) {
+                  <div class="rating">
+
+                    <ng-container *ngIf="product.rating">
+                      <span>
+                        <app-rating [rating]="product.rating"></app-rating>
+                        ({{product.rating}})
+                      </span>
+                    </ng-container>
+                    <ng-container *ngIf="!product.rating || product.rating === 0">
+                      <p>Yet no rating...({{product.rating}})</p>
+                    </ng-container>
+                  </div>
+                  }
+
+                  <div class="tags" *ngIf="product.tags">
+                    <li *ngFor="let tag of product.tags">{{ tag }}</li>
+                  </div>
+
+                  <div class="sku" *ngIf="product.sku">
+                    <p>{{ product.sku }}</p>
+                  </div>
+
+                  <div class="product-price">
+                    @if (product.price === product.discountPercentage) {
+                    <span class="fix-price">${{ product.price }}</span>
+                    }
+
+                    @else {
+                    <div class="discount-price">
+                      <span class="old-price"><del>${{ product.price }}</del></span>
+                      <span class="new-price">${{ product.discountPercentage }}</span>
+                    </div>
+                    }
+
+                    <i class="fa-solid fa-cart-shopping icon"></i>
+                  </div>
+
+                </div>
+                <div class="product-footer">
+                  <span><i class="fa-regular fa-heart"></i> Wishlist</span>
+                  <span><i class="fa-solid fa-code-compare"></i> Compare</span>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+        <!-- List View -->
+        <div class="list-view">
+          @if (currentView=='list') {
+          @for (item of limitedData; track $index) {
+          <app-list-view [product]="item"></app-list-view>
+          }
+          }
+        </div>
+      </div>
+
+
+      <!--Product  Footer  -->
+      <div class="product-footer">
+        <p>
+          @if (product?.length===limitedData?.length){
+        <p>Showing all {{product?.length}} Products</p>
+        }
+        @else {
+        <p>Showing {{limitedData?.length}} Products</p>
+        }
+        </p>
+
+        <form action="">
+          <input type="" id="goto-page" [ngClass]="{'active': pageNumber == 1}" [defaultValue]="1" readonly>
+          <input type="" id="goto-page" [ngClass]="{'active': pageNumber == 2}" [defaultValue]="2" readonly>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+  <app-brand-carousel></app-brand-carousel>
+  <app-footer-products></app-footer-products>
+</div>

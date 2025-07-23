@@ -1,1 +1,262 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 /* You can add global styles to this file, and also import other style files */
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+:root {
+  --dark-color: #333e48;
+  --primary-color: #fed700;
+  --primary-color-hover: #eac600;
+  --text-color: #fff;
+  --border-color: #ddd;
+  --list-color: #768b9e;
+  --dark-list-color: #576673;
+  --list-background: #f5f5f5;
+  --product-list-background: #efefef;
+  // --list-text-color:#5d7184;
+  --lable-color: #aaaaaa;
+  --white-background: #fff;
+  --background-color: #f8f8f8;
+  --cart-background: #eaeaea;
+  --products-color: #0062bd;
+  --offer-color: #dc3545;
+  --pages-text-color: #df3737;
+  --hero-title-color: #34bcec;
+  --icon-color: #7c7c7c;
+  --rating-text-color:#687e93;
+  --tags-color:#6e869a;
+  --sku-color:#879aad;
+  --payment-color:#00d66f;
+  --payment-color-hover:#5eee97;
+  --bar-color:#d8d8d8;
+  --bar-background-color:#f3f3f3;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+}
+
+.bg-dark {
+  background-color: var(--dark-color) !important;
+}
+.text-dark {
+  color: var(--dark-color) !important;
+}
+.border-dark {
+  border-color: var(--dark-color) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+.text-primary {
+  color: var(--primary-color) !important;
+}
+.border-primary {
+  border-color: var(--primary-color) !important;
+}
+
+.list-dark {
+  color: var(--list-color);
+}
+
+.background-color {
+  background-color: var(--background-color);
+}
+
+.icon-color {
+  color: var(--icon-color);
+}
+
+.container {
+  margin: auto;
+  @media (max-width: 576px) {
+    width: 100%;
+  }
+
+  @media (min-width: 576px) {
+    width: 540px;
+  }
+  @media (min-width: 768px) {
+    width: 720px;
+  }
+  @media (min-width: 992px) {
+    width: 960px;
+  }
+  @media (min-width: 1200px) {
+    width: 1140px;
+  }
+  @media (min-width: 1400px) {
+    width: 1320px;
+  }
+}
+
+.input-field {
+  display: flex;
+  border: 2px solid var(--primary-color);
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.from-control {
+  padding: 9px 1rem;
+  border: none;
+  font-size: 14px;
+  border: none;
+  color: var(--dark-color);
+  opacity: 0.9;
+  &:focus {
+    outline: none;
+  }
+}
+.btn {
+  padding: 15px 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+  font-size: 18px;
+}
+
+.cart-btn{
+  background-color: var(--primary-color);
+  width: 200px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.btn-dark {
+  color: var(--text-color);
+  background-color: var(--dark-color);
+  font-size: 18px;
+}
+.custom-tab-1 {
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 18px;
+
+  .tab-item {
+    padding-bottom: 10px;
+
+    &.current {
+      font-weight: 600;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 90%;
+        height: 2px;
+        background-color: var(--primary-color);
+        transform: translateX(-50%);
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        width: 10px;
+        height: 4px;
+        background-color: var(--primary-color);
+        border-radius: 40%;
+        transform: translateX(-50%);
+      }
+    }
+    cursor: pointer;
+  }
+}
+
+.product-title {
+  font-size: 15px;
+  color: var(--products-color);
+  font-weight: 600;
+  overflow: clip;
+}
+.product-category {
+  font-size: 12px;
+  color: var(--list-color);
+  text-decoration: none;
+  &:hover {
+    color: var(--dark-color);
+  }
+}
+
+.fix-price {
+  color: var(--dark-color);
+  font-size: 20px;
+}
+
+.old-price {
+  color: var(--list-color);
+  text-decoration: line-through;
+  font-size: 12px;
+}
+
+.new-price {
+  color: var(--offer-color);
+  font-size: 20px;
+}
+
+.icon {
+  border-radius: 50px;
+  background-color: var(--cart-background);
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+
+.product-footer {
+  color: var(--dark-list-color);
+  font-size: 13px;
+}
+
+// ***OWL CAROUSEL***//
+
+.theme-dots {
+  .owl-theme .owl-dots .owl-dot.active span {
+    background-color: var(--primary-color);
+    width: 30px;
+    height: 8px;
+  }
+}
+
+// .owl-carousel .owl-animated-out {
+//   animation-duration: 0.5s !important; // ← increase to 2 seconds
+// }
+
+// ***OWL CAROUSEL END***//
+
+
+// Light And Dark Mood Switch
+body {
+  &.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  &.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+}
+

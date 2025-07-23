@@ -1,0 +1,33 @@
+@if (Product) {
+<div class="product-cart">
+  <div class="cart-wrapper">
+    <div class="product-title-box">
+      <a class="product-category" href="">{{Product.category}}</a>
+      <h3 class="product-title">{{Product.title}}</h3>
+    </div>
+
+    <div class="product-img">
+      <img [src]="Product.image" alt="{{Product.image}}">
+    </div>
+
+    <div class="product-price">
+      @if(Product.Oprice==Product.Nprice){
+      <span class="fix-price">${{Product.Oprice}}</span>
+      }
+      @else {
+      <div class="discount-price">
+        <span class="old-price"><del>${{Product.Oprice}}</del></span>
+        <span class="new-price">${{Product.Nprice}}</span>
+      </div>
+      }
+      <i class="fa-solid fa-cart-shopping icon"></i>
+    </div>
+
+    <div class="product-footer">
+      <span><i class="fa-regular fa-heart"></i>Wishlist</span>
+      <span><i class="fa-solid fa-code-compare"></i>Compare</span>
+    </div>
+  </div>
+
+</div>
+}

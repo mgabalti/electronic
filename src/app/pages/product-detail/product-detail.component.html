@@ -1,0 +1,313 @@
+<div class="container">
+
+  <ul>
+    <li>Normal Value: {{ NormalValue }}</li>
+    <li>Observable Value: {{ obs }}</li>
+  </ul>
+
+  <button class="btn" (click)="setvalue()">check obs</button>
+
+
+  <div class="container-wrapper">
+
+    <!-- Sidebar -->
+    <div class="sidebar text-dark" [class.active]="openSidebar" (mouseleave)="closeSidebar()"
+      (mouseenter)="insideSidebar=true">
+      <div class="product-cat">
+        <ul class="show-all-outer">
+          <li (click)="toggleShowAll()">
+            <span>Show All Categories</span>
+            @if (showAllCategory) {
+            <i class="fa-solid fa-angle-up"></i>
+            }
+            @if (!showAllCategory) {
+            <i class="fa-solid fa-angle-right"></i>
+            }
+            @if (showAllCategory) {
+            <ul class="show-all-inner">
+              <li><span>Accessories</span></li>
+              <li><span>Bluetooth Speakers</span></li>
+              <li><span>Cameras & Photography</span></li>
+              <li><span>Computer Components</span></li>
+              <li><span>Gadgets</span></li>
+              <li><span>Headphones</span></li>
+              <li><span>Home Entertainment</span></li>
+              <li><span>Home Theatre</span></li>
+              <li><span>Laptops & Computers</span></li>
+              <li><span>Speakers</span></li>
+            </ul>
+            }
+          </li>
+
+          <li><b><span>Smart Phones & Tablets</span></b></li>
+          <li><span>Smartphones</span></li>
+          <li><span>Tablets</span></li>
+        </ul>
+      </div>
+
+      <!-- Dark And Light Mood Button -->
+      <!-- <div class="theme-toggle">
+        <button (click)="toggleTheme()">
+          Switch to {{ isDarkMode ? 'Light' : 'Dark' }} Mode
+        </button>
+      </div> -->
+
+
+      <div class="ad-img">
+        <img src="https://electro.madrasthemes.com/wp-content/uploads/2016/02/shop-sidebar-ad-banner.jpg"
+          alt="ad-image">
+      </div>
+
+      <div class="latest-product">
+        <div class="latest-product-title">
+          <h3>Latest Products</h3>
+        </div>
+        @if(product && product.length > 0) {
+        @for (item of product; track $index) {
+        <app-latest-product [product]="item"></app-latest-product>
+        }
+        }
+      </div>
+
+    </div>
+
+    <!-- Product Detail -->
+    <div class="product-detail">
+      <div class="product-wrapper">
+        <div class="product-image">
+          <img src="https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp" alt="">
+          <div class="img-link">
+            <a href="https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp"
+              target="_blank"><i class="fa-solid fa-magnifying-glass"></i></a>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="inside-upper">
+            <div class="category">
+              <span>Beauty</span>
+            </div>
+            <div class="title">
+              <h1>Essence Mascara Lash Princess</h1>
+            </div>
+            <div class="rating">
+              <span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+              <span class="review-count">(Two customers reviews)</span>
+            </div>
+          </div>
+          <div class="inside-middle">
+            <div class="action-btn">
+              <span><i class="fa-regular fa-heart"></i> Wishlist</span>
+              <span><i class="fa-solid fa-code-compare"></i> Compare</span>
+            </div>
+            <div class="tags">
+              <li>beauty</li>
+              <li>mascara</li>
+            </div>
+          </div>
+          <div class="inside-lower">
+            <div class="price">
+              <div class="price-wrapper">
+                <span class="current-price">$10.48</span>
+                <span class="old-price">$9.99</span>
+              </div>
+              <div class="add-to-cart">
+                <input type="number" value="1" min="1">
+                <button class="btn cart-btn"><i class="fa-solid fa-cart-arrow-down"></i> Add to Cart</button>
+              </div>
+            </div>
+            <div class="payment-source">
+              <p>Pay with <span><i class="fa-solid fa-angle-right"></i></span><strong> link</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-description text-dark">
+        <div class="title">
+          <a>Review</a>
+          <a>More Products</a>
+        </div>
+        <div class="review-box">
+          <div class="review-inner">
+            <div class="review-count">
+              <div class="based-on">
+                <span>Based on 2 reviews</span>
+              </div>
+              <div class="overall">
+                <h2>4.5</h2>
+                <p>overall</p>
+              </div>
+              <div class="review-stars">
+                <div class="five star">
+                  <div class="star-icon">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <div class="rating-bar">
+                    <div class="filler f1"></div>
+                  </div>
+                </div>
+                <div class="four star">
+                  <div class="star-icon">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+                  <div class="rating-bar">
+                    <div class="filler f2"></div>
+                  </div>
+                </div>
+                <div class="three star">
+                  <div class="star-icon">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+                  <div class="rating-bar">
+                    <div class="filler f3"></div>
+                  </div>
+                </div>
+                <div class="two star">
+                  <div class="star-icon">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+                  <div class="rating-bar">
+                    <div class="filler f4"></div>
+                  </div>
+                </div>
+                <div class="one star">
+                  <div class="star-icon">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+                  <div class="rating-bar">
+                    <div class="filler f5"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="add-review">
+              <div class="heading">
+                <span>Add a review</span>
+              </div>
+              <div class="your-rating">
+                <label for="your-rating">your rating</label>
+                <div class="stars">
+                  @for (star of stars; track star; let i= $index) {
+                  <i class="fa-star" [ngClass]="{'fa-solid':i<(hovered || rating),'fa-regular':i>=(hovered || rating)}"
+                    (mouseenter)="hovered = i + 1" (mouseleave)="hovered = 0" (click)="rate(i + 1)"></i>
+                  }
+                </div>
+              </div>
+              <div class="your-review">
+                <label for="review">Your Review</label>
+                <textarea name="review" id="review" cols="30" rows="10"
+                  placeholder="Write your review here..."></textarea>
+              </div>
+              <div class="name">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+              </div>
+              <div class="email">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+              </div>
+              <div class="comment-save">
+                <input type="checkbox" name="save" id="save">
+                <label for="save">
+                  Save my name, email, and website in this browser for the next time I comment.
+                </label>
+              </div>
+              <div class="submit-btn">
+                <button class="btn">Add Review</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="reviewer">
+            <div class="review-item user1">
+              <div class="star">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <div class="reviewer-info">
+                <p> Saepe sit aspernatur et neque fugit!
+                  Laudantium quod ipsa, qui odio consectetur sit nulla quibusdam consequuntur minima molestias inventore
+                  perspiciatis quasi dolorem repellendus maxime.</p>
+
+                <span class="name"><strong>abubacker-</strong></span>
+                <span class="date">November 19, 2021</span>
+
+              </div>
+            </div>
+            <div class="review-item user2">
+              <div class="star">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div class="reviewer-info">
+                <p> Saepe sit aspernatur et neque fugit!
+                  Laudantium quod ipsa, qui odio consectetur sit nulla quibusdam consequuntur minima molestias inventore
+                  perspiciatis quasi dolorem repellendus maxime.</p>
+
+                <span class="name"><strong>abubacker-</strong></span>
+                <span class="date">November 19, 2021</span>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="more-product">
+            @for (item of product; track $index) {
+            @if(item.price){
+            @if(item.price<=150&&item.price>=30){
+              <app-related-product [product]="item"></app-related-product>
+              }
+              }
+              }
+          </div>
+        </div>
+      </div>
+
+      <div class="related-product">
+        <div class="related-product-title">
+          <p>Related Products</p>
+        </div>
+        <div class="related-product-items">
+          @for (item of product; track $index) {
+
+            @if ($index < 5) {
+              <app-product-item [Product]="item"></app-product-item>
+
+            }
+
+            }
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <app-brand-carousel></app-brand-carousel>
+  <app-footer-products></app-footer-products>
+</div>

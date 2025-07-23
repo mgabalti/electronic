@@ -1,0 +1,32 @@
+<div class="seller-container container">
+  <div class="header">
+    <div class="header-left">
+      <p>Best Sellers</p>
+    </div>
+    <div class="header-right">
+      <p>Top 20</p>
+      <li>Smart Phones & Tablets</li>
+      <li>Laptops & Computers</li>
+      <li>Video Cameras</li>
+    </div>
+  </div>
+
+  <div class="regular-products2 theme-dots">
+    <owl-carousel-o [options]="customOptions">
+      @for (Product of products; track $index) {
+        <ng-template carouselSlide>
+      <div>
+        @for (item of Product; track $index) {
+
+        <app-horizontal-item [Product]="item"></app-horizontal-item>
+      }
+      </div>
+    </ng-template>
+
+
+      }
+    </owl-carousel-o>
+
+  </div>
+
+</div>

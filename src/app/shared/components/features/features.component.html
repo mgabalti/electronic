@@ -1,0 +1,40 @@
+<app-sale-item></app-sale-item>
+<div class="feature text-dark container">
+  <!-- Special Offer -->
+  <div class="feature-left">
+    <div class="special-offer-header">
+      <h2>Special Offer</h2>
+    </div>
+    <div class="speacial-offer-img"> <img
+        src="https://electro.madrasthemes.com/wp-content/uploads/2016/03/consal-300x300.png" alt="Speacial-Offer">
+    </div>
+    <div class="speacial-offer-name">
+      <a href="#">Game Console Controller + USB 3.0 Cable</a>
+    </div>
+    <div class="speacial-offer-price">
+      <span class="oprice">$99.00</span>
+    </div>
+  </div>
+  <div class="feature-right">
+    <ul class="custom-tab-1">
+      <li class="tab-item" [ngClass]="{'current':currenttab ==''}" (click)="filterProduct()">Featured</li>
+      <li class="tab-item" [ngClass]="{'current':currenttab =='sale'}" (click)="filterProduct('sale')">On Sale</li>
+      <li class="tab-item" [ngClass]="{'current':currenttab =='top rated'}" (click)="filterProduct('top rated')">Top
+        Rated</li>
+    </ul>
+    <div class="regular-products">
+
+      @for (Product of selectedProduct; track $index) {
+      @if (isDisktop ) {
+      @if ($index < 6) { <app-product-item [Product]="Product"></app-product-item>
+        }
+        }
+        @else {
+        <app-product-item [Product]="Product"></app-product-item>
+
+        }
+        }
+
+    </div>
+  </div>
+</div>
