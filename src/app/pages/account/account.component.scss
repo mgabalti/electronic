@@ -1,0 +1,315 @@
+.container {
+  .customer-form {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    position: relative;
+    .center-or {
+      position: absolute;
+      right: 50%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 60px;
+      font-size: 12px;
+      background-color: var(--text-color);
+      bottom: 50%;
+      @media (max-width: 992px) {
+        display: none;
+      }
+    }
+    .form-wrapper {
+      display: flex;
+      justify-content: space-between;
+      @media (max-width: 992px) {
+        flex-direction: column;
+      }
+      .login-form {
+        width: 48%;
+        padding: 2em;
+        border-right: 1px solid var(--border-color);
+        @media (max-width: 992px) {
+          border-right: none;
+          width: 100%;
+        }
+        .login-details {
+          display: flex;
+          flex-direction: column;
+          h2 {
+            padding: 10px 0px;
+            margin-bottom: 35px;
+            font-size: 25px;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            &::after {
+              content: "";
+              position: absolute;
+              width: 22%;
+              border-bottom: 2px solid var(--primary-color);
+              bottom: 0;
+              left: 0;
+            }
+          }
+          p {
+            font-size: 14px;
+            margin-bottom: 20px;
+          }
+          label {
+            margin-top: 14px;
+            font-weight: 700;
+            font-size: 14px;
+          }
+          input[type="text"],
+          input[type="password"] {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 14px;
+            outline: none;
+            width: 100%;
+            &:focus {
+              border: 1px solid var(--primary-color);
+            }
+          }
+          .password-wrapper {
+            label {
+              display: block;
+              font-weight: 700;
+              font-size: 14px;
+              .required {
+                color: green;
+                &.invalid {
+                  color: red;
+                }
+              }
+            }
+
+            .input-group {
+              display: flex;
+              align-items: center;
+              border: 1px solid var(--border-color);
+              border-radius: 30px;
+              padding: 0 15px;
+              height: 43px;
+              &:focus-within {
+                border: 1px solid var(--primary-color);
+              }
+              input {
+                flex: 1;
+                border: none;
+                outline: none;
+                background-color: transparent;
+              }
+
+              .toggle-password {
+                background: none;
+                border: none;
+                display: flex;
+                align-items: center;
+
+                i {
+                  cursor: pointer;
+                  font-size: 16px;
+                  color: var(--icon-color);
+                }
+              }
+            }
+          }
+
+          .form-options {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            // align-items: center;
+            margin: 15px 0;
+            .remember-me {
+              font-size: 14px;
+              font-weight: 700;
+              margin-bottom: 10px;
+            }
+            .submit-btn {
+              width: 110px;
+              font-weight: bold;
+              border: none;
+              border-radius: 30px;
+              color: var(--dark-color);
+              cursor: pointer;
+              transition: background-color 0.2s ease;
+              margin-bottom: 20px;
+              &:hover {
+                background-color: var(--dark-color);
+                color: var(--text-color);
+              }
+            }
+            .forgot-password {
+              font-size: 14px;
+              text-decoration: none;
+              cursor: pointer;
+              color: var(--dark-color);
+            }
+          }
+        }
+      }
+      .regester-form {
+        width: 48%;
+        padding: 2em;
+        @media (max-width: 992px) {
+          width: 100%;
+        }
+        .regester-details {
+          display: flex;
+          flex-direction: column;
+          h2 {
+            padding: 10px 0px;
+            margin-bottom: 35px;
+            font-size: 25px;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            &::after {
+              content: "";
+              position: absolute;
+              width: 22%;
+              border-bottom: 2px solid var(--primary-color);
+              bottom: 0;
+              left: 0;
+            }
+          }
+          p {
+            font-size: 14px;
+            margin-bottom: 20px;
+          }
+          label {
+            margin-top: 14px;
+            font-weight: 700;
+            font-size: 14px;
+          }
+
+          input[type="text"],
+          input[type="password"] {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 14px;
+            outline: none;
+            &:focus {
+              border: 1px solid var(--primary-color);
+            }
+          }
+
+          .password-wrapper {
+            label {
+              display: block;
+              font-weight: 700;
+              font-size: 14px;
+              .required {
+                color:green;
+                &.invalid {
+                  color: red;
+                }
+              }
+            }
+
+            .input-group {
+              display: flex;
+              align-items: center;
+              border: 1px solid var(--border-color);
+              border-radius: 30px;
+              padding: 0 15px;
+              height: 43px;
+              &:focus-within {
+                border: 1px solid var(--primary-color);
+              }
+              input {
+                flex: 1;
+                border: none;
+                outline: none;
+                background-color: transparent;
+              }
+
+              .toggle-password {
+                background: none;
+                border: none;
+                display: flex;
+                align-items: center;
+
+                i {
+                  cursor: pointer;
+                  font-size: 16px;
+                  color: var(--icon-color);
+                }
+              }
+            }
+          }
+
+          small {
+            margin-top: 10px;
+            font-size: 12px;
+          }
+
+          .radio {
+            display: flex;
+            flex-direction: column;
+            // align-items: center;
+            justify-content: center;
+            gap: 3px;
+            margin: 15px 0px;
+            label {
+              display: flex;
+              align-items: center;
+              gap: 3px;
+            }
+          }
+          .regester-btn {
+            width: 110px;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-bottom: 10px;
+            &:hover {
+              background-color: var(--dark-color);
+              color: var(--text-color);
+            }
+          }
+
+          .info {
+            .title {
+              h3 {
+                font-size: 18px;
+                font-weight: 400;
+              }
+            }
+            .list {
+              margin: 20px 0px;
+              line-height: 2em;
+              li {
+                font-size: 14px;
+                padding-left: 25px;
+                position: relative;
+                &::before {
+                  content: "\f00c";
+                  font-family: "Font Awesome 6 Free";
+                  font-weight: 900;
+                  color: green;
+                  position: absolute;
+                  left: 0;
+                  top: 2px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .required{
+        color: green;
+        &.invalid{
+          color: red;
+        }
+      }
+    }
+  }
+}

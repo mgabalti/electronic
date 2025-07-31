@@ -28,7 +28,7 @@ export interface ProductResponse {
 
 export interface Product {
   [x: string]: any;
-  id: number;
+  id?: number;
   title: string;
   description: string;
   category: string;

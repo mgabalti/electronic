@@ -15,7 +15,7 @@
     <owl-carousel-o [options]="customOptions">
       @for (Product of products; track $index) {
         <ng-template carouselSlide>
-      <div>
+      <div >
         @for (item of Product; track $index) {
 
         <app-horizontal-item [Product]="item"></app-horizontal-item>

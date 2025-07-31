@@ -8,9 +8,11 @@
       </ul>
     </div>
     <div class="deal-products">
-      @for (deal of deals; track $index) {
+      @for (deal of product; track $index) {
       <div class="deal-inner">
-        <app-product-item [Product]="deal"></app-product-item>
+        @if($index<5){
+          <app-product-item [Product]="deal"></app-product-item>
+        }
       </div>
       }
     </div>

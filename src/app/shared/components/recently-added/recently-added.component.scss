@@ -11,7 +11,7 @@
       content: "";
       position: absolute;
       bottom: 0;
-      left:0;
+      left: 0;
       width: 15%;
       height: 2px;
       background-color: var(--primary-color);
@@ -23,18 +23,23 @@
   }
 }
 
+::ng-deep.regular-product3 .owl-carousel .owl-stage-outer {
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+}
 
 ::ng-deep.regular-product3 .owl-theme .owl-nav {
-    position: absolute;
-    top: -65px;
-    right: 0;
-  }
+  position: absolute;
+  top: -65px;
+  right: 0;
+}
 
-  ::ng-deep.regular-product3 .owl-theme .owl-nav [class*=owl-] {
-    background:transparent ;
-    color: #869791;
-    &:hover{
-      background: transparent;
-      color: var(--dark-color);
-    }
+::ng-deep.regular-product3 .owl-theme .owl-nav [class*="owl-"] {
+  background: transparent;
+  color: #869791;
+  &:hover {
+    background: transparent;
+    color: var(--dark-color);
+  }
 }

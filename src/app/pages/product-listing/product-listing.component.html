@@ -218,7 +218,7 @@
         <!-- Grid Extended View -->
         <div *ngIf="currentView === 'extend-grid'" class="extended-grid-view">
           <div class="products" *ngIf="limitedData">
-            <div class="product-cart text-dark" *ngFor="let product of limitedData">
+            <div class="product-cart text-dark" *ngFor="let product of limitedData" routerLink="/product-detail/{{product.id}}">
               <div class="cart-wrapper">
                 <div class="product-img">
                   @if (product.images) {

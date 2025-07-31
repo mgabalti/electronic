@@ -45,16 +45,16 @@
           }
           .price {
             display: flex;
-            align-items: center;
+            align-items: baseline;
             gap: 5px;
             .fix-price {
-              font-size: 14px !important;
+              font-size: 16px !important;
             }
             .old-price {
               font-size: 12px !important;
             }
             .new-price {
-              font-size: 14px !important;
+              font-size: 16px !important;
             }
           }
         }

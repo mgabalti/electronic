@@ -1,7 +1,7 @@
 @if (product) {
-<div class="product-cart text-dark">
+<div class="product-cart text-dark" routerLink="/product-detail/{{product.id}}">
   <div class="product-img">
-    <img [src]="product.image" alt="{{ product.image }}">
+    <img [src]="product.images" alt="{{ product.images }}">
   </div>
 
   <div class="product-text">

@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductItemComponent } from '../../items/product-item/product-item.component';
 import { SaleItemComponent } from '../../items/sale-item/sale-item.component';
-import { ProductDto } from '../../models/productDto.modal';
-import { productsdata } from '../../data/data';
+import { Product, ProductResponse } from '../../models/productDto.modal';
+import { ProductServiceService } from '../../services/product-service.service';
 
 @Component({
   selector: 'app-features',
@@ -14,23 +14,35 @@ import { productsdata } from '../../data/data';
   styleUrl: './features.component.scss',
 })
 export class FeaturesComponent {
-  selectedProduct: ProductDto[] = [];
+  data: ProductResponse | null = null;
+  product: Product[] = [];
   isDisktop: boolean = true;
-  products: ProductDto[];
-  constructor() {
-    this.products = productsdata;
-  }
+
+  beautyProducts: Product[] = [];
+  groceryProducts: Product[] = [];
+  fragranceProducts: Product[] = [];
+  constructor(private pservices: ProductServiceService) {}
 
   ngOnInit() {
     //life cycle hook
-    this.isDisktop = window.innerWidth > 1200;
-    this.filterProduct();
-  }
+
+    this.pservices.getAllProduct().subscribe((data: ProductResponse) => {
+      this.data = data;
+      this.product = data.products;
+
+      this.beautyProducts = this.product.filter(
+        (p) => p.category === 'beauty'
+      );
+      this.groceryProducts = this.product.filter(
+        (p) => p.category === 'groceries'
+      );
+      this.fragranceProducts = this.product.filter(
+        (p) => p.category === 'fragrances'
+      );
 
 
-  currenttab: string = '';
-  filterProduct(z: string = '') {
-    this.currenttab = z;
-    this.selectedProduct = this.products.filter((x) => x.feature == z);
+      console.log(this.product);
+    });
   }
+  selectedTab: 'featured' | 'sale' | 'topRated' = 'featured';
 }

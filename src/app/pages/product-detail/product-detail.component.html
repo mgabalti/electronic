@@ -1,13 +1,4 @@
 <div class="container">
-
-  <ul>
-    <li>Normal Value: {{ NormalValue }}</li>
-    <li>Observable Value: {{ obs }}</li>
-  </ul>
-
-  <button class="btn" (click)="setvalue()">check obs</button>
-
-
   <div class="container-wrapper">
 
     <!-- Sidebar -->
@@ -63,9 +54,11 @@
           <h3>Latest Products</h3>
         </div>
         @if(product && product.length > 0) {
-        @for (item of product; track $index) {
-        <app-latest-product [product]="item"></app-latest-product>
-        }
+        <div class="latest-product-inner">
+          @for (item of product; track $index) {
+          <app-latest-product [product]="item"></app-latest-product>
+          }
+        </div>
         }
       </div>
 
@@ -75,23 +68,33 @@
     <div class="product-detail">
       <div class="product-wrapper">
         <div class="product-image">
-          <img src="https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp" alt="">
+          <img [src]="data?.images" alt="product-image">
           <div class="img-link">
-            <a href="https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp"
-              target="_blank"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a [href]="data?.images" target="_blank"><i class="fa-solid fa-magnifying-glass"></i></a>
+          </div>
+
+          <div class="discounted-price">
+            <span class="discount">
+              {{ getDiscountPercent(data?.price??0, data?.discountPercentage??0) }}% OFF
+            </span>
           </div>
         </div>
         <div class="product-info">
           <div class="inside-upper">
             <div class="category">
-              <span>Beauty</span>
+              <span>{{data?.category}}</span>
             </div>
             <div class="title">
               <h1>{{ data?.title }}</h1>
             </div>
             <div class="rating">
-              <span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
-              <span class="review-count">(Two customers reviews)</span>
+              <span><app-rating [rating]="data?.rating??0"></app-rating></span>
+              <span class="review-count">(<span>{{data?.reviews?.length}}</span> customers reviews)</span>
+            </div>
+            <div class="avalability">
+              @if(data?.availabilityStatus === 'Low Stock') {
+              <p>Avalability: <span>{{data?.availabilityStatus}}</span></p>
+              }
             </div>
           </div>
           <div class="inside-middle">
@@ -100,15 +103,22 @@
               <span><i class="fa-solid fa-code-compare"></i> Compare</span>
             </div>
             <div class="tags">
-              <li>beauty</li>
-              <li>mascara</li>
+              <li><span>{{data?.tags}}</span></li>
             </div>
           </div>
           <div class="inside-lower">
             <div class="price">
               <div class="price-wrapper">
-                <span class="current-price">$10.48</span>
-                <span class="old-price">$9.99</span>
+                <span class="current-price">
+                  @if (data?.price===data?.discountPercentage) {
+                  <span class="fix-price">{{data?.price|currency}}</span>
+                  }
+                  @else {
+                  <span class="new-price">{{data?.discountPercentage|currency}}</span>
+                  <span class="old-price">{{data?.price|currency}}</span>
+                  }
+                </span>
+
               </div>
               <div class="add-to-cart">
                 <input type="number" value="1" min="1">
@@ -123,81 +133,15 @@
       </div>
       <div class="product-description text-dark">
         <div class="title">
-          <a>Review</a>
-          <a>More Products</a>
+          <a (click)="showSection = 'review'" [class.active]="showSection==='review'">Review</a>
+          <a (click)="showSection = 'products'" [class.active]="showSection==='products'">More Products</a>
         </div>
         <div class="review-box">
+          @if (showSection=='review') {
+
           <div class="review-inner">
-            <div class="review-count">
-              <div class="based-on">
-                <span>Based on 2 reviews</span>
-              </div>
-              <div class="overall">
-                <h2>4.5</h2>
-                <p>overall</p>
-              </div>
-              <div class="review-stars">
-                <div class="five star">
-                  <div class="star-icon">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                  <div class="rating-bar">
-                    <div class="filler f1"></div>
-                  </div>
-                </div>
-                <div class="four star">
-                  <div class="star-icon">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-                  <div class="rating-bar">
-                    <div class="filler f2"></div>
-                  </div>
-                </div>
-                <div class="three star">
-                  <div class="star-icon">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-                  <div class="rating-bar">
-                    <div class="filler f3"></div>
-                  </div>
-                </div>
-                <div class="two star">
-                  <div class="star-icon">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-                  <div class="rating-bar">
-                    <div class="filler f4"></div>
-                  </div>
-                </div>
-                <div class="one star">
-                  <div class="star-icon">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-                  <div class="rating-bar">
-                    <div class="filler f5"></div>
-                  </div>
-                </div>
-              </div>
+            <div class="review-summary">
+              <app-review-summary [data]="data"></app-review-summary>
             </div>
 
             <div class="add-review">
@@ -207,9 +151,10 @@
               <div class="your-rating">
                 <label for="your-rating">your rating</label>
                 <div class="stars">
-                  @for (star of stars; track star; let i= $index) {
-                  <i class="fa-star" [ngClass]="{'fa-solid':i<(hovered || rating),'fa-regular':i>=(hovered || rating)}"
-                    (mouseenter)="hovered = i + 1" (mouseleave)="hovered = 0" (click)="rate(i + 1)"></i>
+                  @for (star of stars; track $index) {
+                  <i class="fa-star"
+                    [ngClass]="{'fa-solid':star<(hovered || rating),'fa-regular':star>=(hovered || rating)}"
+                    (mouseenter)="hovered = star + 1" (mouseleave)="hovered = 0" (click)="rate(star + 1)"></i>
                   }
                 </div>
               </div>
@@ -238,54 +183,45 @@
             </div>
 
           </div>
+
           <div class="reviewer">
-            <div class="review-item user1">
-              <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-              </div>
+            <div class="review-item ">
               <div class="reviewer-info">
-                <p> Saepe sit aspernatur et neque fugit!
-                  Laudantium quod ipsa, qui odio consectetur sit nulla quibusdam consequuntur minima molestias inventore
-                  perspiciatis quasi dolorem repellendus maxime.</p>
+                @if (data?.reviews?.length) {
+                @for (item of data?.reviews; track $index) {
+                <div class="reviewer-inner">
+                  <div class="star">
+                    @for (star of stars; track star; let i= $index) {
+                    <i class="fa-star"
+                      [ngClass]="{'fa-solid':i<(hovered || (item?.rating ?? 0)),'fa-regular':i>=(hovered || (item?.rating ?? 0))}"></i>
+                    }
+                  </div>
+                  <p> {{item?.comment}}</p>
 
-                <span class="name"><strong>abubacker-</strong></span>
-                <span class="date">November 19, 2021</span>
+                  <span class="name"><strong>{{item?.reviewerName}}-</strong></span>
+                  <span class="date">{{item?.date}}</span>
+                  <p class="email"><strong>Email: </strong> <span>{{item?.reviewerEmail}}</span></p>
+                </div>
+                }
+                }
+                <!-- <p> {{data?.reviews?.[]?.comment}}</p>
 
-              </div>
-            </div>
-            <div class="review-item user2">
-              <div class="star">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <div class="reviewer-info">
-                <p> Saepe sit aspernatur et neque fugit!
-                  Laudantium quod ipsa, qui odio consectetur sit nulla quibusdam consequuntur minima molestias inventore
-                  perspiciatis quasi dolorem repellendus maxime.</p>
-
-                <span class="name"><strong>abubacker-</strong></span>
-                <span class="date">November 19, 2021</span>
+                <span class="name"><strong>{{data?.reviews?.[]?.reviewerName}}-</strong></span>
+                <span class="date">{{data?.reviews?.[]?.date}}</span> -->
 
               </div>
             </div>
 
           </div>
-
+          }
           <div class="more-product">
+            @if (showSection=='products') {
             @for (item of product; track $index) {
-            @if(item.price){
-            @if(item.price<=150&&item.price>=30){
-              <app-related-product [product]="item"></app-related-product>
+            @if($index >15&& $index < 22) { <app-product-item [Product]="item"></app-product-item>
               }
               }
               }
+
           </div>
         </div>
       </div>
@@ -296,10 +232,7 @@
         </div>
         <div class="related-product-items">
           @for (item of product; track $index) {
-
-            @if ($index < 5) {
-              <app-product-item [Product]="item"></app-product-item>
-
+          @if ($index < 5) { <app-product-item [Product]="item"></app-product-item>
             }
 
             }

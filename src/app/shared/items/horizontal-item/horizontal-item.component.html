@@ -14,19 +14,19 @@
 
       <div class="product-price">
         @if(Product.Oprice==Product.Nprice){
-        <span class="fix-price">${{Product.Oprice}}</span>
+        <span class="fix-price">{{Product.Oprice| currency:'USD' }}</span>
         }
         @else {
         <div class="discount-price">
-          <span class="old-price">${{Product.Oprice}}</span>
-          <span class="new-price">${{Product.Nprice}}</span>
+          <span class="new-price">{{Product.Nprice| currency:'USD' }}</span>
+          <span class="old-price">{{Product.Oprice| currency:'USD' }}</span>
         </div>
-      }
-      <i class="fa-solid fa-cart-shopping icon"></i>
+        }
+        <i class="fa-solid fa-cart-shopping icon"></i>
       </div>
 
       <div class="product-footer">
-        <span><i class="fa-regular fa-heart" ></i>Wishlist</span>
+        <span><i class="fa-regular fa-heart"></i>Wishlist</span>
         <span><i class="fa-solid fa-code-compare"></i>Compare</span>
       </div>
     </div>
