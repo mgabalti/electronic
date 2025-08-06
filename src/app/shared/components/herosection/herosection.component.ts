@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-herosection',
-  imports: [CarouselModule, CommonModule],
+  imports: [CarouselModule, CommonModule, RouterLink],
   templateUrl: './herosection.component.html',
   styleUrl: './herosection.component.scss',
 })
@@ -49,6 +50,7 @@ export class HerosectionComponent {
       price: '<sup>$</sup>749 <sup>99</sup>',
       image:
         'https://electro.madrasthemes.com/wp-content/uploads/2020/02/smartwatches-resized.png',
+      id: 110,
     },
     {
       pretitle: 'SHOP TO GET WHAT YOU LOVE',
@@ -60,6 +62,7 @@ export class HerosectionComponent {
       price: null,
       image:
         'https://electro.madrasthemes.com/wp-content/uploads/2019/01/Sounddevice.png',
+      id: 111,
     },
     {
       pretitle: 'SHOP TO GET WHAT YOU LOVE',
@@ -71,6 +74,7 @@ export class HerosectionComponent {
       price: null,
       image:
         'https://electro.madrasthemes.com/wp-content/uploads/2019/01/Smartphones.png',
+      id: 112,
     },
   ];
 }

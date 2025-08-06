@@ -7,63 +7,81 @@ import {
   ProductResponse,
 } from '../../shared/models/productDto.modal';
 import { ProductServiceService } from '../../shared/services/product-service.service';
-import { RelatedProductComponent } from "../../shared/items/related-product/related-product.component";
-import { BrandCarouselComponent } from "../../shared/items/brand-carousel/brand-carousel.component";
-import { FooterProductsComponent } from "../../shared/components/footer-products/footer-products.component";
+import { BrandCarouselComponent } from '../../shared/items/brand-carousel/brand-carousel.component';
+import { FooterProductsComponent } from '../../shared/components/footer-products/footer-products.component';
 import { ProductItemComponent } from '../../shared/items/product-item/product-item.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, } from '@angular/router';
+import { RatingComponent } from '../../shared/items/rating/rating.component';
+import { ReviewSummaryComponent } from '../../shared/items/review-summary/review-summary.component';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [LatestProductComponent, CommonModule, ProductItemComponent, RelatedProductComponent, BrandCarouselComponent, FooterProductsComponent],
+  imports: [
+    LatestProductComponent,
+    CommonModule,
+    ProductItemComponent,
+    BrandCarouselComponent,
+    FooterProductsComponent,
+    RatingComponent,
+    ReviewSummaryComponent,
+  ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',
 })
 export class ProductDetailComponent {
-
   data: Product | null = null;
 
-  product: ProductDto[] | undefined;
+  product: Product[] | null = null;
 
- 
   // Injecting the ProductServiceService to fetch product details
-  constructor( private pservice: ProductServiceService, private route: ActivatedRoute) {}
+  constructor(
+    private pservice: ProductServiceService,
+    private route: ActivatedRoute, private router: Router
+  ) {}
 
-  // Observable value for testing BehaviorSubject
-  // This will be used to demonstrate the BehaviorSubject functionality
-  obs: number = 0;
-  NormalValue: number = 0;
 
   // Lifecycle hook that is called after the component has been initialized
   // This is where we will fetch the product details and subscribe to the BehaviorSubject
   ngOnInit() {
     // Fetch product details here
-        const productId = this.route.snapshot.paramMap.get('id');
+    const productId = this.route.snapshot.paramMap.get('id');
 
     this.pservice.getAllProduct().subscribe((data: ProductResponse) => {
-      this.data = data.products.filter((product:any) => product.id === Number(productId))[0];
-      
+      this.data = data.products.filter(
+        (product: any) => product.id === Number(productId)
+      )[0];
+      if (!this.data) {
+        this.router.navigate(['/listing'])
+      }
+      this.product=data.products;
+      // this.product = data.products.map((x: any) => {
+      //   return {
+      //     id: x.id,
+      //     category: x.category,
+      //     image: x.images[0],
+      //     title: x.title,
+      //     price: x.price,
+      //     Oprice: x.price,
+      //     Nprice: x.discountPercentage,
+      //     discountPercentage: x.discountPercentage,
+      //     images: x.images,
+      //     rating: x.rating,
+      //     tags: x.tags,
+      //     sku: x.sku,
+      //     feature: x['feature'],
+      //     stock: x.stock,
+      //     availabilityStatus: x.availabilityStatus,
+      //     meta: x.meta ?? {
+      //       createdAt: '',
+      //       updatedAt: '',
+      //       barcode: '',
+      //       qrCode: '',
+      //     },
+      //   };
+      // });
       console.log(this.data);
-    
     });
-
-    // Subscribe to BehaviorSubject to get the value
-    // This will allow us to see the changes in the value
-    this.pservice.getValue().subscribe((value) => {
-      this.obs = value;
-      console.log('Value from BehaviorSubject:', value);
-    });
-    this.NormalValue = this.pservice.get();
   }
-
-  // Test function to set value
-  // This function is just for testing purposes to see the BehaviorSubject in action
-
-  setvalue() {
-    this.pservice.setValue(this.obs + 1);
-    this.pservice.set(this.NormalValue + 1);
-  }
-
 
   //Filter toggle
   // This will be used to toggle the sidebar
@@ -95,4 +113,17 @@ export class ProductDetailComponent {
   rate(value: number) {
     this.rating = value;
   }
+
+  // Find the discount percentage
+  // This function calculates the discount percentage based on the original price and the discounted price
+
+  getDiscountPercent(price: number, discounted: number): number {
+    if (!price || price === discounted) return 0;
+    const percent = ((price - discounted) / price) * 100;
+    return Math.round(percent);
+  }
+
+
+// Toggle between Review and Products
+  showSection: 'review' | 'products' = 'review';
 }

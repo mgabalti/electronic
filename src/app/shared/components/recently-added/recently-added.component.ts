@@ -1,21 +1,30 @@
 import { Component } from '@angular/core';
 import { ProductItemComponent } from '../../items/product-item/product-item.component';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { ProductDto } from '../../models/productDto.modal';
-import { productsdata } from '../../data/data';
+import { Product, ProductResponse } from '../../models/productDto.modal';
+import { HorizontalItemComponent } from "../../items/horizontal-item/horizontal-item.component";
+import { ProductServiceService } from '../../services/product-service.service';
 
 @Component({
   selector: 'app-recently-added',
-  imports: [ProductItemComponent, CarouselModule],
+  imports: [CarouselModule, ProductItemComponent],
   templateUrl: './recently-added.component.html',
   styleUrl: './recently-added.component.scss',
 
 })
 export class RecentlyAddedComponent {
-products:ProductDto[]
-  constructor(){
-    this.products = productsdata;
+products: Product[] | null = null;
+data:ProductResponse|null=null
+
+  constructor(private pservices:ProductServiceService){}
+
+  ngOnInit(): void {
+    this.pservices.getAllProduct().subscribe((data:ProductResponse)=>{
+      this.data=data;
+      this.products=data.products;
+    })
   }
+
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,

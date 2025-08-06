@@ -1,4 +1,4 @@
-import { ProductDto } from './../../shared/models/productDto.modal';
+import { Product } from './../../shared/models/productDto.modal';
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { ProductResponse } from '../../shared/models/productDto.modal';
 import { ProductServiceService } from '../../shared/services/product-service.service';
@@ -10,6 +10,7 @@ import { LatestProductComponent } from '../../shared/items/latest-product/latest
 import { FooterProductsComponent } from '../../shared/components/footer-products/footer-products.component';
 import { BrandCarouselComponent } from '../../shared/items/brand-carousel/brand-carousel.component';
 import { RatingComponent } from '../../shared/items/rating/rating.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-listing',
@@ -22,46 +23,24 @@ import { RatingComponent } from '../../shared/items/rating/rating.component';
     FooterProductsComponent,
     BrandCarouselComponent,
     RatingComponent,
+    RouterLink
   ],
   templateUrl: './product-listing.component.html',
   styleUrl: './product-listing.component.scss',
 })
 export class ProductListingComponent implements OnInit {
   data: ProductResponse | null = null;
-  product: ProductDto[] | null = null;
-  limitedData: ProductDto[] | undefined;
+  product: Product[] | null = null;
+  limitedData: Product[] | undefined;
+item: any;
   // categoryList: ProductDto[] | any;
   constructor(private pservice: ProductServiceService) {}
-     
+
   ngOnInit(): void {
     this.pservice.getAllProduct().subscribe((data: ProductResponse) => {
       this.data = data;
+      this.product=data.products;
       console.log(this.data);
-      this.product = this.data.products.map((x) => {
-        return {
-          id: x.id,
-          category: x.category,
-          image: x.images[0],
-          title: x.title,
-          price: x.price,
-          Oprice: x.price,
-          Nprice: x.discountPercentage,
-          discountPercentage: x.discountPercentage,
-          images: x.images,
-          rating: x.rating,
-          tags: x.tags,
-          sku: x.sku,
-          feature: x['feature'],
-          stock: x.stock,
-          availabilityStatus: x.availabilityStatus,
-          meta: x.meta ?? {
-            createdAt: '',
-            updatedAt: '',
-            barcode: '',
-            qrCode: '',
-          },
-        };
-      });
 
       document.body.classList.add('light-mode');
 
@@ -70,7 +49,7 @@ export class ProductListingComponent implements OnInit {
       this.calculateCategoryCounts();
 
       // debugger;
-      this.limitedData = this.product.slice(0, 30);
+      this.limitedData = this.product?.slice(0, 30);
       console.log(this.product);
       // return data;
     });
@@ -146,7 +125,7 @@ export class ProductListingComponent implements OnInit {
 
   // Product Price Filter
 
-  productList: ProductDto[] = [];
+  productList: Product[] = [];
   priceRange = { min: 0, max: 50 };
   minPrice: number = this.priceRange.min;
   maxPrice: number = this.priceRange.max;

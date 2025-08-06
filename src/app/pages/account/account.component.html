@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="customer-form">
+    <span class="center-or">OR</span>
+    <div class="form-wrapper text-dark">
+      <div class="login-form">
+
+        <form action="" class="login-details ">
+          <h2>Login</h2>
+          <p>Welcome back! Sign in to your account.</p>
+
+          <label for="username">Username or email address <span class="required">*</span></label>
+          <input type="text" name="username" id="username" required>
+
+          <div class="password-wrapper">
+            <label for="password">Password <span class="required" [class.invalid]="invalidPassword">*</span></label>
+            <div class="input-group">
+              <input [type]="showPassword ? 'text' : 'password'" id="password" required [(ngModel)]="password"
+                (input)="validatePassword()" />
+              <button type="button" class="toggle-password">
+                <i class="fa-solid" [ngClass]="showPassword? 'fa-eye-slash':'fa-eye' " (click)="togglePassword()"></i>
+              </button>
+            </div>
+          </div>
+
+
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox" name="remember" />
+              Remember me
+            </label>
+            <button type="submit" class="submit-btn btn">Login</button>
+            <a routerLink="/reset-password" class="forgot-password">Lost your password?</a>
+          </div>
+
+        </form>
+
+
+      </div>
+      <div class="regester-form">
+        <form action="" class="regester-details">
+          <h2>Register</h2>
+          <p>Create new account today to reap the benefits of a personalized shopping experience.</p>
+
+          <label for="username">Username<span class="required">*</span></label>
+          <input type="text" name="username" id="username" required>
+
+          <label for="email">Email address<span class="required">*</span></label>
+          <input type="text" name="email" id="email" required>
+
+          <div class="password-wrapper">
+            <label for="password">Password <span class="required" [class.invalid]="invalidPassword">*</span></label>
+            <div class="input-group">
+              <input [type]="showPassword ? 'text' : 'password'" id="password" required [(ngModel)]="password"
+                (input)="validatePassword()" />
+              <button type="button" class="toggle-password">
+                <i class="fa-solid" [ngClass]="showPassword? 'fa-eye-slash':'fa-eye' " (click)="togglePassword()"></i>
+              </button>
+            </div>
+          </div>
+
+          @if (userType==='vendor') {
+
+          <label for="firstname">First Name<span class="required">*</span></label>
+          <input type="text" name="firstname" id="firstname" required>
+
+          <label for="lastname">Last Name<span class="required">*</span></label>
+          <input type="text" name="lastname" id="lastname" required>
+
+          <label for="shopname">Shop Name<span class="required">*</span></label>
+          <input type="text" name="shopname" id="shopname" required>
+
+          <label for="shopurl">Shop URL <span class="required">*</span></label>
+          <input type="text" name="shopurl" id="shopurl" required>
+
+          <small>https://electro.madrasthemes.com/store/</small>
+          }
+
+
+          <div class="radio">
+            <label>
+              <input type="radio" name="userType" [(ngModel)]="userType" value="customer" />
+              <span>I am a customer</span>
+            </label>
+            <label>
+              <input type="radio" name="userType" [(ngModel)]="userType" value="vendor" />
+              <span>I am a vendor</span>
+            </label>
+          </div>
+
+          <p>Your personal data will be used to support your experience throughout this website, to manage access to
+            your account, and for other purposes described in our privacy policy.</p>
+
+          <button class="regester-btn btn">Regester</button>
+
+          <div class="info">
+            <div class="title">
+              <h3>Sign up today and you will be able to :</h3>
+            </div>
+            <div class="list">
+              <li>Speed your way through checkout</li>
+              <li>Track your orders easily</li>
+              <li>Keep a record of all your purchases</li>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <app-brand-carousel></app-brand-carousel>
+  <app-footer-products></app-footer-products>
+</div>

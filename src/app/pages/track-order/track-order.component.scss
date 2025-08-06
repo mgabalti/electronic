@@ -1,0 +1,65 @@
+.password-recovery {
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+
+    h2 {
+      font-size: 39px;
+      font-weight: 400;
+      margin: 0;
+    }
+  }
+  p {
+    font-size: 14px;
+  }
+
+  .track-order{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .track-id{
+      width: 48%;
+    }
+
+    .track-email{
+      width: 48%;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      outline: none;
+
+      &:focus {
+        border-color: var(--primary-color);
+      }
+    }
+
+  }
+  .track-btn {
+    margin: 20px 0px;
+    padding: 10px 20px;
+    color: var(--dark-color);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--dark-color);
+      color: var(--text-color);
+    }
+  }
+
+}

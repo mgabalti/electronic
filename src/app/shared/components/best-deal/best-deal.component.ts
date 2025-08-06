@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ProductItemComponent } from '../../items/product-item/product-item.component';
 import { CommonModule } from '@angular/common';
+import { Product, ProductResponse } from '../../models/productDto.modal';
+import { ProductServiceService } from '../../services/product-service.service';
 
 @Component({
   selector: 'app-best-deal',
@@ -9,15 +11,31 @@ import { CommonModule } from '@angular/common';
   styleUrl: './best-deal.component.scss',
 })
 export class BestDealComponent {
-  getDealWithFeature(_t15: {
-    title: string;
-    category: string;
-    Oprice: number;
-    Nprice: number;
-    image: string;
-  }): import('../../models/productDto.modal').ProductDto | null {
-    throw new Error('Method not implemented.');
+  product: Product[] | null = null;
+  data: ProductResponse | null = null;
+
+  constructor(private pservices:ProductServiceService){}
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.pservices.getAllProduct().subscribe((data:ProductResponse)=>{
+      this.data=data;
+      this.product=data.products;
+      console.log(this.product)
+    })
   }
+
+  // getDealWithFeature(_t15: {
+  //   title: string;
+  //   category: string;
+  //   Oprice: number;
+  //   Nprice: number;
+  //   image: string;
+  //   id: number;
+  // }): import('../../models/productDto.modal').Product | null {
+  //   throw new Error('Method not implemented.');
+  // }
   products = [
     {
       title: 'Best Deals',
@@ -57,6 +75,7 @@ export class BestDealComponent {
       image:
         'https://electro.madrasthemes.com/wp-content/uploads/2016/03/powerbank-300x300.png',
       feature: '',
+      id: 39,
     },
     {
       title: 'Game Consoles, Video Games & Consoles',
@@ -66,6 +85,7 @@ export class BestDealComponent {
       image:
         'https://electro.madrasthemes.com/wp-content/uploads/2016/03/consal-600x550.png',
       feature: '',
+      id: 53,
     },
     {
       title: 'Aerocool EN52377 Dead Silence Gaming Cube Case',
@@ -75,6 +95,7 @@ export class BestDealComponent {
       image:
         'https://electro.madrasthemes.com/wp-content/uploads/2016/03/gamecabin-300x300.png',
       feature: '',
+      id: 37,
     },
     {
       title: 'Laptop Screener CX70 2QF-621XPL 17.3″ 4210',
@@ -84,6 +105,7 @@ export class BestDealComponent {
       image:
         'https://electro.madrasthemes.com/wp-content/uploads/2016/03/applap-300x300.png',
       feature: '',
+      id: 54,
     },
     {
       title: 'Widescreen 4K SUHD TV',
@@ -93,6 +115,7 @@ export class BestDealComponent {
       image:
         'https://electro.madrasthemes.com/wp-content/uploads/2016/03/widetv-300x300.png',
       feature: '',
+      id: 55,
     },
   ];
   isActiveTab: string = this.products[0].title;

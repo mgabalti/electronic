@@ -2,14 +2,17 @@ import { Component } from '@angular/core';
 import { HorizontalItemComponent } from '../../items/horizontal-item/horizontal-item.component';
 // import { CommonModule } from '@angular/common';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { RouterLink } from '@angular/router';
+import { ProductDto } from '../../models/productDto.modal';
 
 @Component({
   selector: 'app-best-sellers',
-  imports: [HorizontalItemComponent, CarouselModule],
+  imports: [HorizontalItemComponent, CarouselModule, RouterLink],
   templateUrl: './best-sellers.component.html',
   styleUrl: './best-sellers.component.scss',
 })
 export class BestSellersComponent {
+  // product: ProductDto | null = null;
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,
@@ -47,6 +50,7 @@ export class BestSellersComponent {
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/consal-300x300.png',
         feature: 'top rated',
+        id: 31,
       },
       {
         title: 'Wireless Audio System Multiroom 360',
@@ -56,6 +60,7 @@ export class BestSellersComponent {
         feature: '',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/WirelessSound-300x300.png',
+        id: 32,
       },
     ],
 
@@ -68,6 +73,7 @@ export class BestSellersComponent {
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/headphonecase-300x300.png',
         feature: 'top rated',
+        id: 33,
       },
       {
         title: 'Tablet White EliteBook Revolve 810 G2',
@@ -77,6 +83,7 @@ export class BestSellersComponent {
         feature: '',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/apptablet-300x300.png',
+        id: 34,
       },
     ],
 
@@ -89,6 +96,7 @@ export class BestSellersComponent {
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/redPhone-300x300.png',
         feature: 'sale',
+        id: 35,
       },
       {
         title: 'Full Color LaserJet Pro M452dn',
@@ -98,6 +106,7 @@ export class BestSellersComponent {
         feature: '',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/printer-300x300.png',
+        id: 36,
       },
     ],
     [
@@ -109,6 +118,7 @@ export class BestSellersComponent {
         feature: '',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/uniheadphone-300x300.png',
+        id: 37,
       },
       {
         title: 'Smart Phones 6S 32GB LTE',
@@ -118,6 +128,7 @@ export class BestSellersComponent {
         feature: 'page2',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/GoldPhone-1-300x300.png',
+        id: 38,
       },
     ],
     [
@@ -129,6 +140,7 @@ export class BestSellersComponent {
         feature: 'page2',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2021/11/prodcut3-300x300.png',
+        id: 39,
       },
 
       {
@@ -139,6 +151,7 @@ export class BestSellersComponent {
         feature: 'page2',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/camera2-300x300.png',
+        id: 40,
       },
     ],
     [
@@ -150,6 +163,7 @@ export class BestSellersComponent {
         feature: 'page2',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/Ultrabooks-300x300.png',
+        id: 41,
       },
       {
         title: 'Apple MacBook Pro MF841HN/A 13-inch',
@@ -159,6 +173,7 @@ export class BestSellersComponent {
         feature: 'page2',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/macpro-300x300.png',
+        id: 42,
       },
     ],
     [
@@ -170,6 +185,7 @@ export class BestSellersComponent {
         feature: 'page3',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/GoldPhone-1-300x300.png',
+        id: 43,
       },
 
       {
@@ -180,6 +196,7 @@ export class BestSellersComponent {
         feature: 'page3',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/game1-300x300.png',
+        id: 44,
       },
     ],
     [
@@ -191,6 +208,7 @@ export class BestSellersComponent {
         feature: 'page3',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/occlod-300x300.png',
+        id: 45,
       },
     ],
     [
@@ -202,6 +220,7 @@ export class BestSellersComponent {
         feature: 'page3',
         image:
           'https://electro.madrasthemes.com/wp-content/uploads/2016/03/applap-300x300.png',
+        id: 46,
       },
     ],
   ];

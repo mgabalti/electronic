@@ -1,9 +1,9 @@
 @if (product) {
 @if (product.rating && product.price ) {
 @if (product.rating>=3 && product.price>=150) {
-<div class="latest-product-wrapper text-dark">
-  <div class="product-img">
-    <img [src]="product.image" alt="{{ product.image }}">
+<a class="latest-product-wrapper text-dark" >
+  <div class="product-img" routerLink="/product-detail/{{ product.id }}">
+    <img [src]="product.images" alt="{{ product.images }}">
   </div>
   <div class="latest-product-text">
     <div class="product-title">
@@ -16,7 +16,7 @@
       <span>${{ product.price | number:'1.2-2' }}</span>
     </div>
   </div>
-</div>
+</a>
 }
 }
 }

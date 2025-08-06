@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="password-recovery text-dark">
+    <div class="title">
+      <h2>Track your Order</h2>
+    </div>
+
+    <p>
+      To track your order please enter your Order ID in the box below and press the "Track" button. This was given to
+      you on your receipt and in the confirmation email you should have received.
+    </p>
+
+    <form #trackOrder="ngForm" (ngSubmit)="onSubmit()">
+      <div class="track-order">
+        <div class="track-id">
+          <label for="id">Order ID</label>
+          <input type="text" id="ID" name="ID" [(ngModel)]="ID" placeholder="Find in your order confirmation email."
+            required />
+        </div>
+
+        <div class="track-email">
+          <label for="email">Billing email</label>
+          <input type="text" id="email" name="email" [(ngModel)]="email" placeholder="Email you used during checkout."
+            required />
+        </div>
+
+      </div>
+      <button class="track-btn btn" type="submit">Track</button>
+    </form>
+
+  </div>
+  <app-brand-carousel></app-brand-carousel>
+  <app-footer-products></app-footer-products>
+</div>
